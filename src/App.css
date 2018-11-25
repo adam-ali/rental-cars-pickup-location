@@ -7,7 +7,7 @@
   background-color: #ffc959;
   margin: 10px;
   width: 47%;
-  height: 300px;
+  height: 450px;
   padding: 25px;
 }
 h2{
@@ -23,6 +23,14 @@ h2{
   width: 98%;
   padding: 11px 0px 11px 5px;  
 }
+.search-input-loader{
+  height: 24px;
+  width: auto;
+  right: 28%;
+  top: 154px;
+  position: absolute;
+}
+
 .search-results-container{
   border-radius: 5px;
 }

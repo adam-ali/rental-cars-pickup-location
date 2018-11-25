@@ -7,6 +7,7 @@ class App extends Component {
     
     this.state = {
       searchResults : [],
+      isLoading : false
         
     }
     this.search = this.search.bind(this);    
@@ -28,9 +29,12 @@ class App extends Component {
   getSearchResults(searchTerm){
     // number of results to be returned 
     let NoOfResults = 6;
+    this.setState({isLoading: true});
     fetch(`https://cors.io/?https://www.rentalcars.com/FTSAutocomplete.do?solrIndex=fts_en&solrRows=${NoOfResults}&solrTerm=${searchTerm}`)
     .then(res=> res.json())
     .then(res=>{
+      this.setState({isLoading: false});
+    
       let results = res.results.docs;  
       console.log(results);
       if (this.searchInput.value.length<2) {
@@ -52,18 +56,21 @@ class App extends Component {
         resultsFound = false;
     }
     else resultsFound = true;
-
+    console.log(this.state)
     return (
       <div className="App">
 
         <div className='container'>
           <h2>Let’s find your ideal car</h2>
           <label className='search-input-label' >Pick-up Location</label>
+
           <input className='search-input' onChange={this.search} ref={el => this.searchInput =el} type='text' placeholder='city, airport, station, region, district…' />
-
+          
+          {
+            this.state.isLoading && <img className='search-input-loader' src='https://cdn2.rcstatic.com/images/site_graphics/newsite/preloader64.gif' alt='loading' />
+          }
+          
           <div className='search-results-container'>
-
-
           {resultsFound ? (
             
             this.state.searchResults.map((item,index)=>{
@@ -91,14 +98,9 @@ class App extends Component {
             })
           ) : (
             
-            // this.state.searchResults===[] ? (
-            this.searchInput.value.length<2 ? (
-                <div></div>
-            ):(
             <div className='search-result search-result--disbaled'>
               No results found      
-            </div>
-            )     
+            </div>     
           )}
           
 
