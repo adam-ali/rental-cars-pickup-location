@@ -6,7 +6,7 @@
 .container{
   background-color: #ffc959;
   margin: 10px;
-  width: 47%;
+  width: 34%;
   height: 450px;
   padding: 25px;
 }
@@ -26,13 +26,18 @@ h2{
 .search-input-loader{
   height: 24px;
   width: auto;
-  right: 28%;
+  right: 34%;
   top: 154px;
   position: absolute;
 }
 
-.search-results-container{
-  border-radius: 5px;
+.search-result:first-child{
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+.search-result:last-child{
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
 }
 
 .search-result{
@@ -41,7 +46,8 @@ h2{
   color: #989898;
   height: 40px;
   padding: 4px 0px 2px 7px;     
-  
+  border-bottom: 1px solid #eaeaea;
+
 }
 .search-result:hover{
   background-color: #dff6ff;
@@ -86,9 +92,22 @@ h2{
   height: 22px;
   border-radius: 3px;
   font-size: 14px;
+  padding-top: 6px;
   font-style: italic;
 
 }
-.search-result--disbaled :hover{
-  background-color: initial;
+.search-result--disbaled:hover{
+  background-color: white;
+}
+.hidden{
+  display: none;
+}
+
+@media only screen and (max-width: 1100px) {
+  .container{
+    width: 80%;
+  }
+  .search-input-loader {
+    right: 12%;
+  }
 }
